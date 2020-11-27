@@ -10,7 +10,7 @@
             <h3>Fabricantes</h3>
             <div class="w3ls_w3l_banner_nav_right_grid1">
                 @foreach ($fabricantes as $fabricante)
-                    <div class="col-md-3 w3ls_w3l_banner_left" style="margin-bottom: 10px;">
+                    <div class="col-md-4 w3ls_w3l_banner_left" style="margin-bottom: 10px;">
                         <div class="hover14 column">
                             <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
                                 <div class="agile_top_brand_left_grid1">
@@ -18,9 +18,10 @@
                                         <div class="snipcart-item block">
                                             <div class="snipcart-thumb">
                                                 <a href="{{ route('fabricante', ['name'=>  $fabricante->name]) }}">
-                                                    <img src="{{ asset('images/team.jpg') }}" alt="" class="img-responsive">
+                                                    <img src="{{ asset('images/sinimagen.jpg') }}" alt="" class="img-responsive">
                                                 </a>
-                                                <h4 style="font-size: 1.1rem; margin: 10px 0;">{{$fabricante->name}}</h4>
+                                                <h4 style="font-size: 1.1rem; margin: 10px 0;"><strong style="font-size: 14px;
+                                                    font-weight: 400;">Fabricante:</strong> {{$fabricante->name}}</h4>
                                                 <a href="{{ route('fabricante', ['name'=>  $fabricante->name]) }}" class="addToCart" style="margin-top: 5px;">Piezas</a>
                                             </div>
                                         </div>

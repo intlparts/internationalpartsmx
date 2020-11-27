@@ -7,10 +7,10 @@
 @section('content')
     <div class="w3ls_w3l_banner_nav_right_grid w3ls_w3l_banner_nav_right_grid_popular">
         <div class="container">
-            <h3>Productos</h3>
+            <h3>Fabricante {{$name}}</h3>
             <div class="w3ls_w3l_banner_nav_right_grid1">
                 @foreach ($piezas as $pieza)
-                    <div class="col-md-3 w3ls_w3l_banner_left" style="margin-bottom: 10px;">
+                    <div class="col-md-4 w3ls_w3l_banner_left" style="margin-bottom: 10px;">
                         <div class="hover14 column">
                             <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
                                 <div class="agile_top_brand_left_grid1">
@@ -21,8 +21,8 @@
                                                     <!-- <img src="{{ asset('images/team.jpg') }}" alt="" class="img-responsive"> -->
                                                     <img src="{{ asset('images/sinimagen.jpg') }}" alt="" class="img-responsive">
                                                 </a>
-                                                <h4 style="font-size: 1.1rem; margin: 10px 0;">{{$pieza->number}}</h4>
-                                                <p>{{Str::limit($pieza->short_description, 20)}}</p>
+                                                <h4 style="font-size: 1.1rem; margin: 10px 0;"><strong style="font-size: 14px;
+                                                    font-weight: 400;">Nro de parte:</strong> {{$pieza->number}}</h4>
                                                 <a href="{{ route('pieza', ['number'=> Str::of($pieza->number)->trim()]) }}" class="addToCart" style="margin-top: 5px;">Pieza</a>
                                             </div>
                                         </div>

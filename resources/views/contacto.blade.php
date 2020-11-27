@@ -20,23 +20,29 @@
             </div>
             <div class="col-md-8 agileinfo_mail_grid_right">
                 <form action="{{route('enviar')}}" method="post" enctype="multipart/form-data">
+                    @if (\Session::has('mensaje'))
+                        <div class="alert alert-{{\Session::get('class')}} alert-dismissible fade show" role="alert" style="font-size: 1rem; opacity: 1;">
+                            {!! \Session::get('mensaje') !!}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>                 
+                    @endif
                 @csrf
                     <div class="col-md-6 wthree_contact_left_grid">
-                        <input type="text" name="Name" value="Nombre*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name*';}" required="">
-                        <input type="email" name="Email" value="Email*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email*';}" required="">
+                        <input type="text" name="name" placeholder="Nombre"  required="">
                     </div>
                     <div class="col-md-6 wthree_contact_left_grid">
-                        <input type="text" name="Telephone" value="Teléfono*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone*';}" required="">
-                        <input type="text" name="Subject" value="Asunto*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject*';}" required="">
+                        <input type="email" name="email" placeholder="Email" required="">
                     </div>
                     <div class="clearfix"> </div>
-                    <textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mensaje...';}" required="">Message...</textarea>
+                    <textarea name="message"></textarea>
                     <div class="col-md-6 wthree_contact_left_grid" style="margin-bottom: 20px;">
                         <input type="file" name="file">
                     </div>
                     <div class="clearfix"> </div>
-                    <input type="submit" value="Submit">
-                    <input type="reset" value="Clear">
+                    <input type="submit" value="Enviar">
+                    <input type="reset" value="Limpiar">
                 </form>
             </div>
             <div class="clearfix"> </div>

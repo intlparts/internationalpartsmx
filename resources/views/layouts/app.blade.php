@@ -35,7 +35,7 @@
 		</div>
 		<div class="w3l_search">
 			<form action="{{ route('index') }}" method="get">
-				<input type="text" name="number" value="" placeholder="Número de parte" required>
+				<input type="text" name="pieza" value="" placeholder="Número de parte" required>
 				<input type="submit" value="Buscar">
 			</form>
 		</div>
@@ -58,8 +58,9 @@
 				</ul>
 			</div>
 			<div class="w3ls_logo_products_left1">
+				
 				<ul class="phone_email">
-					<li><i class="fa fa-phone" aria-hidden="true"></i><a href="tel:+523323068550">+52 (33) 2306 85 50</a></li>
+					<li><i class="fa fa-phone" aria-hidden="true"></i><a href="https://api.whatsapp.com/send?phone=+523323068550" target="_blank">+52 (33) 2306 85 50</a></li>
 					<li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:ventas@internationalparts.us">ventas@internationalparts.us</a></li>
 				</ul>
 			</div>

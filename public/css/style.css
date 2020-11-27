@@ -2070,9 +2070,7 @@ ul.wmuSliderPagination {
 	width:100%;
 	border:1px solid #E6E6E6;
 }
-.agileinfo_mail_grid_right input[type="text"]:nth-child(2),.agileinfo_mail_grid_right input[type="email"]{
-	margin:1em 0 0;
-}
+
 .agileinfo_mail_grid_right textarea{
 	min-height: 200px;
     margin: 1em 1.1em;
@@ -2104,7 +2102,7 @@ ul.wmuSliderPagination {
     color: #212121;
     line-height: 1.5em;
     text-transform: uppercase;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }
 .agileinfo_single_left {
     padding: 2em;
@@ -2927,9 +2925,6 @@ ul.wmuSliderPagination {
 	}
 	.agileinfo_mail_grid_left ul li:last-child {
 		padding-left: 2em;
-	}
-	.agileinfo_mail_grid_right input[type="email"] {
-		margin: 1em 0;
 	}
 	.agileinfo_mail_grid_right textarea {
 		width: 95.5% !important;
