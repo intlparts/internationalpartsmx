@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Spatie\Sitemap\SitemapGenerator;
 
 class GenerateSitemap extends Command
 {
@@ -37,6 +38,8 @@ class GenerateSitemap extends Command
      */
     public function handle()
     {
-        return 0;
+        // modify this to your own needs
+        SitemapGenerator::create(config('app.url'))
+            ->writeToFile(public_path('sitemap.xml'));
     }
 }

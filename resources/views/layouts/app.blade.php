@@ -61,7 +61,7 @@
 				
 				<ul class="phone_email">
 					<li><i class="fa fa-phone" aria-hidden="true"></i><a href="https://api.whatsapp.com/send?phone=+523323068550" target="_blank">+52 (33) 2306 85 50</a></li>
-					<li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:ventas@internationalparts.us">ventas@internationalparts.us</a></li>
+					<li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:{{env('MAIL_FROM_RECIVED')}}">{{env('MAIL_FROM_RECIVED')}}</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"> </div>
@@ -128,5 +128,18 @@
 			</div>
 		</div>
 	</div>
+	<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+	var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+	(function(){
+	var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+	s1.async=true;
+	s1.src='https://embed.tawk.to/56b4d3b65d8a6c387d75fe58/page';
+	s1.charset='UTF-8';
+	s1.setAttribute('crossorigin','*');
+	s0.parentNode.insertBefore(s1,s0);
+	})();
+	</script>
+	<!--End of Tawk.to Script-->
 </body>
 </html>

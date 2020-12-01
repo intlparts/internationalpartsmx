@@ -11,6 +11,7 @@ use App\Mail\MessageReceivedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use App\Manufacturer;
 
 class PagesController extends Controller
 {
@@ -46,7 +47,7 @@ class PagesController extends Controller
     }
 
     public function fabricante($name){
-        $fabricante = DB::table('manufacturers')->where('name', $name)->first();
+        $fabricante = Manufacturer::where('name', $name)->findOrFail();
         $piezas = DB::table('supplies')->select('number')->where('manufacturers_id', $fabricante->id)->distinct('number')->paginate(20);
         SEO::setTitle("INTL - $fabricante->name");
         SEO::setDescription('piezas de refacción en Mexico con los mejores planes de pago');

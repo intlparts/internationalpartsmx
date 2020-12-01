@@ -11,7 +11,7 @@
                 </ul>
                 <ul>
                     <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
-                    <li>email<span><a href="mailto:ventas@internationalparts.us">ventas@internationalparts.us</a></span></li>
+                <li>email<span><a href="mailto:{{env('MAIL_FROM_RECIVED')}}">{{env('MAIL_FROM_RECIVED')}}</a></span></li>
                 </ul>
                 <ul>
                     <li><i class="fa fa-phone" aria-hidden="true"></i></li>
