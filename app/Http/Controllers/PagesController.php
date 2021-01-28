@@ -47,7 +47,7 @@ class PagesController extends Controller
     }
 
     public function fabricante($name){
-        $fabricante = Manufacturer::where('name', $name)->findOrFail();
+        $fabricante = Manufacturer::where('name', $name)->first();
         $piezas = DB::table('supplies')->select('number')->where('manufacturers_id', $fabricante->id)->distinct('number')->paginate(20);
         SEO::setTitle("INTL - $fabricante->name");
         SEO::setDescription('piezas de refacción en Mexico con los mejores planes de pago');
