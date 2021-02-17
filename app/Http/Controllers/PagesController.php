@@ -50,7 +50,7 @@ class PagesController extends Controller
     }
 
     public function fabricante($name){
-        $fabricante = Manufacturer::where('name', $name)->first();
+        $fabricante = Manufacturer::where('slug', $name)->first();
 
         $piezas = DB::table('supplies')->select('manufacturers.name as manufacturer', 'manufacturers.slug as manufacturer_slug', 'supplies.number', 'supplies.slug as number_slug')
         ->leftJoin('manufacturers', 'supplies.manufacturers_id', 'manufacturers.id')
