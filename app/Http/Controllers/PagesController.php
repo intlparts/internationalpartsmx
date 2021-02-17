@@ -19,18 +19,22 @@ class PagesController extends Controller
         $pieza = $request->input('pieza');
         $productos = $pieza ? 
             DB::table('supplies')
-                ->select('number')
+                ->select('manufacturers.name as manufacturer', 'manufacturers.slug as manufacturer_slug', 'supplies.number', 'supplies.slug as number_slug')
+                ->leftJoin('manufacturers', 'supplies.manufacturers_id', 'manufacturers.id')
                 ->where('number', 'like', "%$pieza%")
-                ->orWhere('short_description', 'like', "%$pieza%")
-                ->distinct('number')
+                ->where('supplies.slug', '<>', '')
+                ->distinct()
                 ->paginate(15)
-            : DB::table('supplies')->select('number')->distinct('number')->paginate(15);
+            : DB::table('supplies')
+                ->select('manufacturers.name as manufacturer', 'manufacturers.slug as manufacturer_slug', 'supplies.number', 'supplies.slug as number_slug')
+                ->leftJoin('manufacturers', 'supplies.manufacturers_id', 'manufacturers.id')
+                ->where('manufacturers.slug', '<>', '')
+                ->where('supplies.slug', '<>', '')
+                ->paginate(15);
 
         
         SEO::setTitle('INTL - piezas de refacción');
         SEO::setDescription('piezas de refacción en Mexico con los mejores planes de pago');
-        SEO::opengraph()->setUrl('https://internationalparts.mx');
-
         return view('index', compact('productos'));
     }
 
@@ -41,47 +45,65 @@ class PagesController extends Controller
 
         SEO::setTitle('INTL - piezas de refacción');
         SEO::setDescription('piezas de refacción en Mexico con los mejores planes de pago');
-        SEO::opengraph()->setUrl('https://internationalparts.mx/frabicantes');
 
         return view('fabricantes', compact('fabricantes'));
     }
 
     public function fabricante($name){
         $fabricante = Manufacturer::where('name', $name)->first();
-        $piezas = DB::table('supplies')->select('number')->where('manufacturers_id', $fabricante->id)->distinct('number')->paginate(20);
+
+        $piezas = DB::table('supplies')->select('manufacturers.name as manufacturer', 'manufacturers.slug as manufacturer_slug', 'supplies.number', 'supplies.slug as number_slug')
+        ->leftJoin('manufacturers', 'supplies.manufacturers_id', 'manufacturers.id')
+        ->where('manufacturers_id', $fabricante->id)
+        ->where('manufacturers.slug', '<>', '')
+        ->where('supplies.slug', '<>', '')
+        ->distinct()
+        ->paginate(20);
+
         SEO::setTitle("INTL - $fabricante->name");
         SEO::setDescription('piezas de refacción en Mexico con los mejores planes de pago');
-        SEO::opengraph()->setUrl("https://internationalparts.mx/frabicante/$fabricante->name");
+
         return view('fabricante', compact('name', 'piezas'));
     }
 
-    public function producto($number){
-        $number = str_replace('\\', '/', $number);
+    public function producto($manufacturer , $number){
         $pieza = DB::table('supplies')
-            ->where('number', $number)
-            ->where('sync_connection_id', '2')
+            ->select('number', 'short_description', 'large_description', 'supplies.slug as number_slug', 'manufacturers.slug as manufacturer_slug', 'name')
+            ->leftJoin('manufacturers', 'supplies.manufacturers_id', 'manufacturers.id')
+            ->where('supplies.slug', $number)
+            ->where('sync_connection_id', 2)
+            ->where('manufacturers.slug', '<>', '')
+            ->where('supplies.slug', '<>', '')
             ->first();
 
         if(!$pieza)
-            $pieza = DB::table('supplies')->where('number', $number)->first();
+            $pieza = DB::table('supplies')
+            ->select('number', 'short_description', 'large_description', 'supplies.slug as number_slug', 'manufacturers.slug as manufacturer_slug', 'name')
+            ->leftJoin('manufacturers', 'supplies.manufacturers_id', 'manufacturers.id')
+            ->where('supplies.slug', $number)
+            ->where('manufacturers.slug', '<>', '')
+            ->where('supplies.slug', '<>', '')
+            ->first();
 
         SEO::setTitle("INTL - $pieza->number");
         SEO::setDescription($pieza->large_description);
-        SEO::opengraph()->setUrl("https://internationalparts.mx/producto/$pieza->number");
+
         return view('producto', compact('pieza'));
     }
 
     public function quienesSomos(){
+
         SEO::setTitle('INTL - Quienes Somos');
         SEO::setDescription('piezas de refacción en Mexico con los mejores planes de pago');
-        SEO::opengraph()->setUrl('https://internationalparts.mx/quienes-somos');
+
         return view('quienes-somos');
     }
 
     public function contacto(){
+        
         SEO::setTitle('INTL - Contacto');
         SEO::setDescription('piezas de refacción en Mexico con los mejores planes de pago');
-        SEO::opengraph()->setUrl('https://internationalparts.mx/contacto');
+
         return view('contacto');
     }
 

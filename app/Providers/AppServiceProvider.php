@@ -26,10 +26,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         
-        $top10Fabricantes = DB::table('supplies')->select(DB::raw('supplies.manufacturers_id, manufacturers.name, count(supplies.manufacturers_id) AS total'))
+        $top10Fabricantes = DB::table('supplies')->select(DB::raw('supplies.manufacturers_id, manufacturers.slug as manufacturer_slug, manufacturers.name, count(supplies.manufacturers_id) AS total'))
         ->join('manufacturers', 'supplies.manufacturers_id', 'manufacturers.id')
         ->whereNotNull('manufacturers.name')
-        //->where('manufacturers.name', '<>', 'GENERICO')
         ->whereNotIn('name', ['GENERICO', 'generico', 'Fabricante', 'fabricante', ''])
         ->groupBy('manufacturers_id')
         ->orderBy('total', 'DESC')

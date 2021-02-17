@@ -87,7 +87,7 @@
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav nav_1">
                         @foreach ($top10Fabricantes as $fabricante)
-                            <li><a href="{{ route('fabricante', ['name'=> $fabricante->name]) }}">{{$fabricante->name}}</a></li>
+                            <li><a href="{{ route('fabricante', ['name'=> $fabricante->manufacturer_slug]) }}">{{$fabricante->name}}</a></li>
                         @endforeach
                         <li><a href="{{ route('fabricantes') }}">Ver todos</a></li>
 					</ul>

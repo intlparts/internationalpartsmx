@@ -17,13 +17,13 @@
                                     <figure>
                                         <div class="snipcart-item block">
                                             <div class="snipcart-thumb">
-                                                <a href="{{ route('pieza', ['number'=> Str::of($pieza->number)->trim()]) }}">
+                                                <a href="{{ route('pieza', ['manufacturer' => $pieza->manufacturer_slug, 'number'=> $pieza->number_slug]) }}">
                                                     <!-- <img src="{{ asset('images/team.jpg') }}" alt="" class="img-responsive"> -->
                                                     <img src="{{ asset('images/sinimagen.jpg') }}" alt="" class="img-responsive">
                                                 </a>
                                                 <h4 style="font-size: 1.1rem; margin: 10px 0;"><strong style="font-size: 14px;
                                                     font-weight: 400;">Nro de parte:</strong> {{$pieza->number}}</h4>
-                                                <a href="{{ route('pieza', ['number'=> Str::of($pieza->number)->trim()]) }}" class="addToCart" style="margin-top: 5px;">Pieza</a>
+                                                <a href="{{ route('pieza', ['manufacturer' => $pieza->manufacturer_slug, 'number'=> $pieza->number_slug]) }}" class="addToCart" style="margin-top: 5px;">Pieza</a>
                                             </div>
                                         </div>
                                     </figure>
